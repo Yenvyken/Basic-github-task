@@ -1,0 +1,24 @@
+{
+  "name": "api-testing-postman",
+  "version": "1.0.0",
+  "description": "Validation of API endpoints for a sample application.",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "test:e2e": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yenvyken/API_Testing_Postman.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yenvyken/API_Testing_Postman/issues"
+  },
+  "homepage": "https://github.com/Yenvyken/API_Testing_Postman#readme",
+  "devDependencies": {
+    "cypress": "^15.20.1"
+  }
+}
