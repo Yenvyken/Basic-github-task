@@ -3,12 +3,8 @@ describe('Odoo 19 login', () => {
   const username = Cypress.env('ODOO_USERNAME');
   const password = Cypress.env('ODOO_PASSWORD');
 
-  const visitLoginPage = () => {
-    cy.visit('/web/login', database ? { qs: { db: database } } : undefined);
-  };
-
   it('loads the Odoo login page', () => {
-    visitLoginPage();
+    cy.visitOdooLogin(database);
 
     cy.get('input[name="login"]').should('be.visible');
     cy.get('input[name="password"]').should('be.visible');
@@ -26,9 +22,12 @@ describe('Odoo 19 login', () => {
 
     cy.location('pathname', { timeout: 30000 }).should((pathname) => {
       expect(pathname).to.not.equal('/web/login');
-      expect(pathname).to.match(/^\/web(\/.*)?$/);
+      expect(pathname).to.match(/^\/(web|odoo)(\/.*)?$/);
     });
 
     cy.get('body').should('not.contain', 'Wrong login/password');
+    cy.get('.o_web_client, .o_action_manager', { timeout: 30000 }).should(
+      'exist',
+    );
   });
 });

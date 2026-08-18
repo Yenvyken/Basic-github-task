@@ -2,7 +2,10 @@ const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl: process.env.CYPRESS_ODOO_BASE_URL || 'http://localhost:8069',
+    baseUrl:
+      process.env.CYPRESS_ODOO_BASE_URL ||
+      process.env.CYPRESS_BASE_URL ||
+      'http://localhost:8069',
     specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
     supportFile: 'cypress/support/e2e.js',
     defaultCommandTimeout: 10000,

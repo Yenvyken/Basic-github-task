@@ -1,3 +1,7 @@
+Cypress.Commands.add('visitOdooLogin', (database = Cypress.env('ODOO_DB')) => {
+  cy.visit('/web/login', database ? { qs: { db: database } } : undefined);
+});
+
 Cypress.Commands.add('loginToOdoo', (options = {}) => {
   const database = options.database || Cypress.env('ODOO_DB');
   const username = options.username || Cypress.env('ODOO_USERNAME');
@@ -9,7 +13,7 @@ Cypress.Commands.add('loginToOdoo', (options = {}) => {
     );
   }
 
-  cy.visit('/web/login', database ? { qs: { db: database } } : undefined);
+  cy.visitOdooLogin(database);
 
   cy.get('input[name="login"]').should('be.visible').clear().type(username);
   cy.get('input[name="password"]')
@@ -18,7 +22,7 @@ Cypress.Commands.add('loginToOdoo', (options = {}) => {
     .type(password, { log: false });
 
   cy.get('body').then(($body) => {
-    const databaseInput = $body.find('input[name="db"]');
+    const databaseInput = $body.find('input[name="db"]:visible');
 
     if (database && databaseInput.length) {
       cy.wrap(databaseInput).clear().type(database);

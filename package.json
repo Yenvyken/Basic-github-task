@@ -1,11 +1,12 @@
 {
-  "name": "api-testing-postman",
+  "name": "odoo-19-cypress-e2e",
   "version": "1.0.0",
-  "description": "Validation of API endpoints for a sample application.",
+  "description": "Cypress end-to-end tests for Odoo 19.",
   "scripts": {
-    "cy:open": "cypress open",
-    "cy:run": "cypress run",
-    "test:e2e": "cypress run"
+    "cy:open": "cypress open --e2e",
+    "cy:run": "cypress run --e2e",
+    "cy:verify": "cypress verify",
+    "test:e2e": "npm run cy:run"
   },
   "repository": {
     "type": "git",
