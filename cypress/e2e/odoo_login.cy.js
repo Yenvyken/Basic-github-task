@@ -9,7 +9,10 @@ describe('Odoo 19 login', () => {
     cy.get('input[name="login"]').should('be.visible');
     cy.get('input[name="password"]').should('be.visible');
     cy.get('form').within(() => {
-      cy.get('button[type="submit"], input[type="submit"]').should('be.visible');
+      cy.get('button[type="submit"], input[type="submit"]')
+        .filter(':visible')
+        .first()
+        .should('be.enabled');
     });
   });
 

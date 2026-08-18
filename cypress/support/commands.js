@@ -30,6 +30,9 @@ Cypress.Commands.add('loginToOdoo', (options = {}) => {
   });
 
   cy.get('form').within(() => {
-    cy.get('button[type="submit"], input[type="submit"]').click();
+    cy.get('button[type="submit"], input[type="submit"]')
+      .filter(':visible')
+      .first()
+      .click();
   });
 });
