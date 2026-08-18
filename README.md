@@ -13,6 +13,28 @@ Odoo 19 web login flow.
 npm install
 ```
 
+### Run a local Odoo 19 instance (Docker Compose)
+
+A `docker-compose.yml` is included to spin up Odoo 19 and PostgreSQL locally:
+
+```bash
+docker compose up -d
+```
+
+The Odoo web server is published on `http://localhost:8069`. On first boot you
+must create/initialize a database (named `odoo` below) and set the admin
+password:
+
+```bash
+docker compose exec -T odoo odoo -d odoo -i base --stop-after-init \
+  --db_host=127.0.0.1 --db_port=5432 --db_user=odoo --db_password=odoo
+```
+
+> Cloud Agent users do not need to run any of this manually. The committed
+> `.cursor/environment.json` starts Docker, brings up Odoo + Postgres,
+> initializes the database, and writes a local `cypress.env.json` automatically,
+> so `npm run cy:run` works out of the box.
+
 ### Configure the target Odoo instance
 
 The Cypress configuration defaults to a local Odoo server at
